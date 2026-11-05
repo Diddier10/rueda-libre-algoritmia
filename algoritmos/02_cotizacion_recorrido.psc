@@ -20,5 +20,5 @@ Algoritmo ReservaRecorridos
     Escribir "Reserva para el recorrido: ", nombreRecorrido;
     Escribir "Valor total a pagar: $", valorTotal;
     Escribir "Anticipo a pagar hoy (30%): $", anticipo;
-    Escribir "Saldo pendiente para el dÃ­a del recorrido: $", saldoPendiente;
+    Escribir "Saldo pendiente para el día del recorrido: $", saldoPendiente;
 FinAlgoritmo

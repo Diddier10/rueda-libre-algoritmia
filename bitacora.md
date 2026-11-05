@@ -145,3 +145,50 @@ El guion "—" significa que la variable aún no tiene valor.
    | Salida | Paralelogramo verde | `'Ingrese el nombre del...'`, `'Reserva para el recor...'`, `'Valor total a pagar: ...'`, `'Anticipo a pagar hoy ...'`, `'Saldo pendiente para ...'` | Mensajes mostrados en pantalla: tanto las indicaciones previas a cada lectura como los resultados finales. |
    | Proceso | Rectángulo amarillo | `porcentajeAnticipo <- 0.30`, `valorTotal <- precioPersona * ...`, `anticipo <- Redon(valor...)`, `saldoPendiente <- valor...` | Asignaciones y cálculos. |
    | Declaración | Rectángulo amarillo (con `Definir`) | `Definir nombreRecorrido...`, `Definir cantidadPersonas...`, `Definir porcentajeAnti...` | Declara el tipo de cada variable antes de usarla. |
+
+   Microreto 4
+      ## Descomposición: cuenta grupal con división entre integrantes
+
+      ### Datos de entrada
+
+      | Dato | Tipo |
+      |---|---|
+      | `cantidadBicicletas` | Entero |
+      | `horasAlquiler` | Entero |
+      | `precioRecorrido` (por persona) | Entero |
+      | `cantidadIntegrantes` | Entero |
+
+      ### Constantes
+
+      | Nombre | Valor |
+      |---|---|
+      | `precioHora` | 10000 |
+      | `porcentajeAporte` | 0.10 |
+      | `unidadRedondeo` | 100 |
+
+      ### Cálculos en orden
+
+      | N.º | Cálculo | Fórmula | Datos que usa |
+      |---|---|---|---|
+      | 1 | `costoAlquiler` | `cantidadBicicletas * horasAlquiler * precioHora` | entradas y constante |
+      | 2 | `costoRecorrido` | `precioRecorrido * cantidadIntegrantes` | entradas |
+      | 3 | `subtotal` | `costoAlquiler + costoRecorrido` | cálculos 1 y 2 |
+      | 4 | `aporte` | `subtotal * porcentajeAporte` | cálculo 3 |
+      | 5 | `totalCuenta` | `subtotal + aporte` | cálculos 3 y 4 |
+      | 6 | `valorPersona` | `totalCuenta / cantidadIntegrantes` | cálculo 5 |
+      | 7 | `valorPersonaRedondeado` | valor por persona redondeado hacia arriba a la centena | cálculo 6 y `unidadRedondeo` |
+
+      ### Salida
+      Subtotal, aporte (10 %), total de la cuenta y valor a cobrar por persona.
+   
+   ## Paso 4
+      ## Redondeo hacia arriba a la centena
+
+      **Funciones de PSeInt** (Ayuda → Contenido → Funciones matemáticas; conviene confirmarlo ahí):
+      - `Trunc(x)`: elimina la parte decimal (3,9 → 3).
+      - `Redon(x)`: redondea al entero más cercano (3,4 → 3; 3,5 → 4).
+
+      **Fórmula usada:**
+
+      ```
+      valorPersonaRedondeado <- Trunc((totalCuenta + cantidadIntegrantes * unidadRedondeo - 1) / (cantidadIntegrantes * unidadRedondeo)) * unidadRedondeo;
