@@ -70,3 +70,21 @@
   * La charla informal de bienvenida o temas de conversación con el cliente.
   * El método de pago exacto utilizado (efectivo, tarjeta o transferencia) o el modelo de la pasarela de pago.
 * **Algoritmos:** Es la secuencia ordenada y estructurada de instrucciones (presentada en la sección 3) que resuelve    el proceso de atención de punta a punta con reglas claras y bifurcaciones de control.
+
+Microreto 2 
+   ##  Paso 3 
+   | Entrada               | Proceso                       | Salida                                         | 
+   | nombreCliente(Cadena) | total <- horas * PRECIO_HORA, | Mensaje: “Hola, [nombre]:                      |
+   | horas (Entero)        | con PRECIO_HORA=10000(Entero).| tu alquiler de [horas] horas cuesta $[total]”. |
+
+   ##  Paso 5
+   | Entrada | Calculo a mano | Esperado|Obtenido|
+   | Ana, 1 hora  | 10000 x 1 | 10000   | 10000 |
+   | Ana, 3 horas | 100000 x 3| 30000   | 30000 |
+   | Ana, 8 horas | 10000 x 8 | 80000   | 80000 |
+
+   ## Paso 6
+      0 horas: el algoritmo calcula 0 * 10000 = 0 y muestra “cuesta $0”. No falla, pero es un cobro sin sentido, porque nadie alquila 0 horas.
+      Número negativo (por ejemplo -2): muestra “cuesta $-20000”. Es un resultado absurdo que podría provocar errores de cobro reales.
+      Causa común: el algoritmo no valida la entrada, así que acepta cualquier entero. Esto se resolverá en la semana 2 con condicionales.
+      
