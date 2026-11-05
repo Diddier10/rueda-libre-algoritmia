@@ -87,4 +87,61 @@ Microreto 2
       0 horas: el algoritmo calcula 0 * 10000 = 0 y muestra “cuesta $0”. No falla, pero es un cobro sin sentido, porque nadie alquila 0 horas.
       Número negativo (por ejemplo -2): muestra “cuesta $-20000”. Es un resultado absurdo que podría provocar errores de cobro reales.
       Causa común: el algoritmo no valida la entrada, así que acepta cualquier entero. Esto se resolverá en la semana 2 con condicionales.
-      
+
+Microreto 3
+   Prueba de escritorio
+   # Prueba de escritorio: Sabores de Barrio, 4 personas
+
+**Algoritmo:** `algoritmos/02_reserva_recorridos.psc`
+
+### Datos de entrada
+
+| Variable | Valor |
+|---|---|
+| `nombreRecorrido` | Sabores de Barrio |
+| `precioPersona` | 60000 |
+| `cantidadPersonas` | 4 |
+
+### Cálculo a mano
+
+- Valor total: 60000 × 4 = **240000**
+- Anticipo: 240000 × 0,30 = 72000, redondeado = **72000**
+- Saldo pendiente: 240000 − 72000 = **168000**
+
+### Estado de las variables después de cada instrucción
+
+El guion "—" significa que la variable aún no tiene valor.
+
+| Paso | Instrucción | nombreRecorrido | precioPersona | cantidadPersonas | valorTotal | anticipo | saldoPendiente |porcentajeAnticipo | Salida en pantalla |
+|---|---|---|---|---|---|---|---|---|---|
+| 0 | Definir variables | — | — | — | — | — | — | — | |
+| 1 | `porcentajeAnticipo <- 0.30` | — | — | — | — | — | — | 0.30 | |
+| 2 | `Escribir "Ingrese el nombre del recorrido:"` | — | — | — | — | — | — | 0.30 | Ingrese el nombre del recorrido: |
+| 3 | `Leer nombreRecorrido` | Sabores de Barrio | — | — | — | — | — | 0.30 | |
+| 4 | `Escribir "Ingrese el precio por persona:"` | Sabores de Barrio | — | — | — | — | — | 0.30 | Ingrese el precio por persona: |
+| 5 | `Leer precioPersona` | Sabores de Barrio | 60000 | — | — | — | — | 0.30 | |
+| 6 | `Escribir "Ingrese la cantidad de personas:"` | Sabores de Barrio | 60000 | — | — | — | — | 0.30 | Ingrese la cantidad de personas: |
+| 7 | `Leer cantidadPersonas` | Sabores de Barrio | 60000 | 4 | — | — | — | 0.30 | |
+| 8 | `valorTotal <- precioPersona * cantidadPersonas` | Sabores de Barrio | 60000 | 4 | 240000 | — | — | 0.30 | |
+| 9 | `anticipo <- Redon(valorTotal * porcentajeAnticipo)` | Sabores de Barrio | 60000 | 4 | 240000 | 72000 | — | 0.30 | |
+| 10 | `saldoPendiente <- valorTotal - anticipo` | Sabores de Barrio | 60000 | 4 | 240000 | 72000 | 168000 | 0.30 | |
+| 11 | `Escribir "Reserva para el recorrido: ", ...` | Sabores de Barrio | 60000 | 4 | 240000 | 72000 | 168000 | 0.30 | Reserva para el recorrido: Sabores de Barrio |
+| 12 | `Escribir "Valor total a pagar: $", ...` | Sabores de Barrio | 60000 | 4 | 240000 | 72000 | 168000 | 0.30 | Valor total a pagar: $240000 |
+| 13 | `Escribir "Anticipo a pagar hoy (30%): $", ...` | Sabores de Barrio | 60000 | 4 | 240000 | 72000 | 168000 | 0.30 | Anticipo a pagar hoy (30%): $72000 |
+| 14 | `Escribir "Saldo pendiente para el día del recorrido: $", ...` | Sabores de Barrio | 60000 | 4 | 240000 | 72000 | 168000 | 0.30 | Saldo pendiente para el día del recorrido: $168000 |
+
+## Paso 6
+      ## Diagrama de flujo: identificación de símbolos
+
+   **Archivo del diagrama:** `02_cotizacion_recorrido.png`
+   **Algoritmo:** `algoritmos/02_cotizaciongit_recorridos.psc`
+
+   ### Símbolos identificados
+
+   | Tipo | Forma / color en PSeInt | Ejemplos en el diagrama | Función |
+   |---|---|---|---|
+   | Inicio y fin | Óvalo (beige) | `Proceso ReservaRecorridos` (inicio), `FinProceso` (fin) | Marca dónde empieza y dónde termina el algoritmo. |
+   | Entrada | Paralelogramo rosado | `nombreRecorrido`, `precioPersona`, `cantidadPersonas` | Lectura de datos que escribe la persona de taquilla. |
+   | Salida | Paralelogramo verde | `'Ingrese el nombre del...'`, `'Reserva para el recor...'`, `'Valor total a pagar: ...'`, `'Anticipo a pagar hoy ...'`, `'Saldo pendiente para ...'` | Mensajes mostrados en pantalla: tanto las indicaciones previas a cada lectura como los resultados finales. |
+   | Proceso | Rectángulo amarillo | `porcentajeAnticipo <- 0.30`, `valorTotal <- precioPersona * ...`, `anticipo <- Redon(valor...)`, `saldoPendiente <- valor...` | Asignaciones y cálculos. |
+   | Declaración | Rectángulo amarillo (con `Definir`) | `Definir nombreRecorrido...`, `Definir cantidadPersonas...`, `Definir porcentajeAnti...` | Declara el tipo de cada variable antes de usarla. |
